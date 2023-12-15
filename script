@@ -1,0 +1,8 @@
+#!/bin/bash
+
+set -eu
+
+rm -rf tmp/appsignal
+echo "" > tmp/appsignal.log
+docker build -f Dockerfile -t alpine-test:build .
+docker run -v "$(pwd)/tmp:/tmp" -p "4001:4001" --rm -it alpine-test:build # bash
